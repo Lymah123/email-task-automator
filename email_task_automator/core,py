@@ -1,0 +1,17 @@
+
+from email_parser import EmailParser
+
+from task_manager import TaskManager
+
+from task_prioritizer import TaskPrioritizer
+
+class EmailTaskAutomator:
+    def __init__(self):
+        self.parser = EmailParser()
+        self.task_manager = TaskManager()
+        self.prioritizer = TaskPrioritizer()
+
+    def process_incoming_email(self, email_data):
+        task = self.parser.extract_task_info(email_data)
+        priority = self.prioritizer.calculate_priority(task)
+        return self.task_manager.create_task(task, priority)
